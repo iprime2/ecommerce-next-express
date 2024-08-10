@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// migrate to databse
+// npx prisma migrate dev --name init
+// generate prisma client
+// npx prisma generate
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(uuid()) @db.Uuid
+  email     String     @unique
+  password  String
+  name      String
+  role      Role       @default(BUYER)
+  products  Product[]
+  cartItems CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Product {
+  id          String     @id @default(uuid()) @db.Uuid
+  name        String
+  description String?
+  price       Float
+  discount    Float?     @default(0.0)
+  images      Image[]
+  isFeatured  Boolean    @default(false)
+  isArchived  Boolean    @default(false)
+  categoryId  String     @db.Uuid
+  category    Category   @relation("CategoryToProduct", fields: [categoryId], references: [id])
+  sizeId      String     @db.Uuid
+  size        Size       @relation(fields: [sizeId], references: [id])
+  colorId     String     @db.Uuid
+  color       Color      @relation(fields: [colorId], references: [id])
+  sellerId    String     @db.Uuid
+  seller      User       @relation(fields: [sellerId], references: [id])
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  cartItems   CartItem[]
+}
+
+model CartItem {
+  id        String  @id @default(uuid()) @db.Uuid
+  quantity  Int     @default(1)
+  productId String  @db.Uuid
+  product   Product @relation(fields: [productId], references: [id])
+  userId    String  @db.Uuid
+  user      User    @relation(fields: [userId], references: [id])
+}
+
+model Category {
+  id        String    @id @default(uuid()) @db.Uuid
+  product   Product[] @relation("CategoryToProduct")
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Size {
+  id        String    @id @default(uuid()) @db.Uuid
+  products  Product[]
+  name      String
+  value     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Color {
+  id        String    @id @default(uuid()) @db.Uuid
+  products  Product[]
+  name      String
+  value     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Image {
+  id        String   @id @default(uuid()) @db.Uuid
+  productId String   @db.Uuid
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productId])
+}
+
+enum Role {
+  SELLER
+  BUYER
+}
