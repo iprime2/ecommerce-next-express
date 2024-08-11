@@ -14,11 +14,16 @@ export default function AdminLayout({
 }>) {
   const [mounted, setMounted] = useState<boolean>(false);
   const router = useRouter();
-  const { token } = useAuthStore();
+  const { token, user } = useAuthStore();
 
   if(!token){
     toast.error("Unauthorized.Please Login First!")
-    router.push("/auth");
+    router.push("/login");
+  }
+
+  if(token && user?.role == "BUYER"){
+    toast.error("Unauthorized.Please Login First!")
+    router.push("/");
   }
 
   useEffect(() => {

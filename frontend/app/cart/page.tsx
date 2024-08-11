@@ -58,7 +58,7 @@ const CartPage: FC = () => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-lg font-semibold text-gray-900">₹{product.price * product.quantity}</p>
+                  <p className="text-lg font-semibold text-gray-900 dark:text-white">₹{product.price * product.quantity}</p>
                   <p className="text-sm text-gray-500 line-through">
                     M.R.P: ₹{(product.price / (1 - (product?.discount || 0) / 100)).toFixed(0)}
                   </p>
@@ -78,7 +78,7 @@ const CartPage: FC = () => {
         </div>
         <div className="p-4 border rounded-lg shadow-md">
           <h2 className="text-xl font-semibold mb-4">Subtotal ({getTotalCount()} items):</h2>
-          <p className="text-2xl font-bold text-gray-900">₹{getTotalPrice().toFixed(2)}</p>
+          <p className="text-2xl font-bold text-gray-900 dark:text-white">₹{getTotalPrice().toFixed(2)}</p>
           <button className="bg-yellow-500 text-white w-full py-2 mt-4 rounded-lg hover:bg-yellow-600">
             Proceed to Buy
           </button>
