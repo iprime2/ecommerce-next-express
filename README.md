@@ -2,6 +2,8 @@
 
 #### [https://sushil-ecommerce-store.vercel.app](https://sushil-ecommerce-store.vercel.app)
 
+![image](https://github.com/user-attachments/assets/2e0631d6-f8bb-49c6-8022-625fc1cafd38)
+
 ### Features:
 
 - Buyer can explore product from home page
@@ -21,7 +23,7 @@
 ### Cloning the repository
 
 ```shell
-git clone [https://github.com/iprime2/ecommerce-store-nextjs-ts](https://github.com/iprime2/ecommerce-next-express.git)
+git clone https://github.com/iprime2/ecommerce-next-express.git
 ```
 
 ### Install pnpm (optional)
