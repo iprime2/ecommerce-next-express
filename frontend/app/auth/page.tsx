@@ -90,8 +90,11 @@ const AuthPage: React.FC = () => {
       }
     } catch (error: any) {
       console.error('Login error:', error);
-      toast.error("Login Failed!");
-      toast.error(error.response.data.error as string);
+      if ((error as any).response.data.error) {
+        toast.error((error as any).response.data.error);
+      } else {
+        toast.error("Something Went Wrong!");
+      }
     } finally {
       setLoading(false)
     }
@@ -117,8 +120,11 @@ const AuthPage: React.FC = () => {
     } catch (error) {
       console.error('Signup error:', error);
       toast.error("Signup Failed!");
-      //@ts-ignore
-      toast.error(error);
+      if ((error as any).response.data.error) {
+        toast.error((error as any).response.data.error);
+      } else {
+        toast.error("Something Went Wrong!");
+      }
     } finally {
       setLoading(false)
     }
