@@ -1,6 +1,6 @@
 # Full Stack E-Commerce Store with Next.js 14, App Router, Nodejs, Expressjs, Typescript, Postgres, Docker, PrismaORM, Github Actions and Tailwind.
 
-#### https://ec2-3-111-188-77.ap-south-1.compute.amazonaws.com:3000
+#### http://ec2-3-111-188-77.ap-south-1.compute.amazonaws.com:3000
 
 ![image](https://github.com/user-attachments/assets/2e0631d6-f8bb-49c6-8022-625fc1cafd38)
 
