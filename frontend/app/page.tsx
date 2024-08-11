@@ -9,29 +9,31 @@ import { Product } from '@/utils/types';
 
 const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const fetchProducts = async (query?: string) => {
+  const fetchProducts = async (query: string = '', category: string = 'All Categories') => {
+    setLoading(true);
     try {
       const response = await apiRequest<Product[]>({
-        url: query ? `/api/products/search` : '/api/products',
+        url: `/api/products/search`,
         method: 'GET',
-        params: query ? { query } : undefined,
+        params: { query, category },
       });
       setProducts(response);
     } catch (error) {
       toast.error("Something Went Wrong!");
       console.error('Error fetching products:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchProducts();
+    fetchProducts(); // Initially load all products
   }, []);
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    fetchProducts(query);
+  const handleSearch = (query: string, category: string) => {
+    fetchProducts(query, category);
   };
 
   return (
@@ -40,7 +42,7 @@ const Home: React.FC = () => {
       <main className="pt-16">
         <div className="py-10">
           <div className="max-w-10xl mx-auto sm:px-6 lg:px-2">
-            <ProductGrid products={products} />
+            <ProductGrid products={products} loading={loading} />
           </div>
         </div>
       </main>

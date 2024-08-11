@@ -140,11 +140,11 @@ export const deleteProductById = async (req: Request, res: Response) => {
 export const searchProduct = async (req: Request, res: Response) => {
   const { query, category } = req.query;
 
-  console.log(query);
+  console.log(query, category);
 
   try {
     let products;
-    if (category) {
+    if (category && category !== "All Categories") {
       products = await prisma.product.findMany({
         where: {
           AND: [
@@ -182,3 +182,4 @@ export const searchProduct = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+

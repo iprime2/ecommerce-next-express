@@ -11,7 +11,7 @@ import { sellerMiddleware } from '../middlewares/sellerMiddilewares';
 
 const router = express.Router();
 
-router.get('/', authMiddleware, sellerMiddleware, getAllCategories);
+router.get('/', getAllCategories);
 router.get('/:id', authMiddleware, sellerMiddleware, getCategoryById);
 router.post('/', authMiddleware, sellerMiddleware, createCategory);
 router.patch('/:id', authMiddleware, sellerMiddleware, updateCategoryById);

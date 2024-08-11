@@ -18,7 +18,7 @@ export default function AdminLayout({
 
   if(!token){
     toast.error("Unauthorized.Please Login First!")
-    router.push("/login");
+    router.push("/auth");
   }
 
   if(token && user?.role == "BUYER"){
