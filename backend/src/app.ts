@@ -17,9 +17,11 @@ const app = express();
 
 app.use(morgan('combined'));
 
+// Security: Helmet helps secure Express apps by setting various HTTP headers.
 app.use(helmet());
 
-app.use(cors({ origin: 'http://localhost:3000' })); 
+// CORS: Enables Cross-Origin Resource Sharing.
+// app.use(cors());
 
 app.use(sessionMiddleware);
 
@@ -27,8 +29,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
+  windowMs: 15 * 60 * 1000, 
+  max: 100, 
 });
 
 app.use(limiter);
