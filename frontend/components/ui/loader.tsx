@@ -7,6 +7,7 @@ export const Loader = () => {
     <div className="flex h-full w-full justify-center pt-10">
       <ClipLoader
         size={200}
+        // color={"#FFFFFF"} 
         aria-label="Loading Spinner"
         data-testid="loader"
         className="mt-8"

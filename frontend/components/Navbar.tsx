@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 
 const Navbar: React.FC<{ onSearch?: (query: string) => void, type?: string }> = ({ onSearch, type }) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const { token, clearAuth } = useAuthStore();
+  const { token, user } = useAuthStore();
   const { getTotalCount } = useCartStore();
   const [mounted, setMounted] = useState<boolean>(false);
   const cartCount = getTotalCount();
@@ -38,8 +38,7 @@ const Navbar: React.FC<{ onSearch?: (query: string) => void, type?: string }> = 
   };
 
   const handleLogout = () => {
-    clearAuth();
-    router.push("/auth");
+    router.push("/logout");
   };
 
   return (
@@ -75,18 +74,28 @@ const Navbar: React.FC<{ onSearch?: (query: string) => void, type?: string }> = 
           <div className="flex items-center space-x-6">
             {!token ? (
               <Link
-                href="/auth"
+                href="/login"
                 className="bg-indigo-600 text-white px-3 py-2 rounded-full text-sm font-medium"
               >
-                Login
+                Login / sign up
               </Link>
             ) : (
-              <button
-                onClick={handleLogout}
-                className="text-sm group flex p-3 justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition"
-              >
-                <LogOut className="text-gray-600 dark:text-white" />
-              </button>
+              <>
+                {user?.role === "SELLER" && (
+                  <Link
+                    href="/seller/dashboard"
+                    className="bg-indigo-600 text-white px-3 py-2 rounded-full text-sm font-medium"
+                  >
+                    Dashboard
+                  </Link>
+                )}
+                <button
+                  onClick={handleLogout}
+                  className="text-sm group flex p-3 justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition"
+                >
+                  <LogOut className="text-gray-600 dark:text-white" />
+                </button>
+              </>
             )}
             {type === "BUYER" && (
               <Link href="/cart" className="relative">

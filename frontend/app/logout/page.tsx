@@ -9,26 +9,29 @@ import { useCartStore } from '@/store/cartStore';
 const LogoutPage = () => {
   const router = useRouter();
   const clearAuth = useAuthStore((state) => state.clearAuth);
-  const { clearCart } = useCartStore();
+  const clearCart = useCartStore((state) => state.clearCart);
   const [loading, setLoading] = useState(true); 
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    const delay = 5000;
-    const timer = setTimeout(() => {
-      clearAuth();
-      clearCart();
-      setLoading(false);
-      router.push('/');
-    }, delay);
+    const timeout = setTimeout(() => {
+      setFadeOut(true);
+      setTimeout(() => {
+        clearCart();
+        clearAuth();
+        router.push('/');
+      }, 2000);
+    }, 1000);
 
-    return () => clearTimeout(timer); // Clear timeout on unmount
+    return () => clearTimeout(timeout);
   }, [clearAuth, router, clearCart]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  return null;
+  return (
+    <div className={`transition-opacity duration-2000 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
+      <Loader />
+      <p className="text-center text-gray-500 mt-4">Logging out, please wait...</p>
+    </div>
+  );
 };
 
 export default LogoutPage;

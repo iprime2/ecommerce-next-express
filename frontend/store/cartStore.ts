@@ -1,4 +1,4 @@
-import {create} from 'zustand';
+import { create } from 'zustand';
 
 interface CartProduct {
   id: string;
@@ -37,8 +37,10 @@ export const useCartStore = create<CartState>((set, get) => ({
         updatedProducts = [...state.products, product];
       }
 
-      // Save to localStorage
-      localStorage.setItem('cart', JSON.stringify(updatedProducts));
+      // Save to localStorage (client-side only)
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cart', JSON.stringify(updatedProducts));
+      }
 
       return {
         products: updatedProducts,
@@ -50,8 +52,10 @@ export const useCartStore = create<CartState>((set, get) => ({
     set((state) => {
       const updatedProducts = state.products.filter((p) => p.id !== productId);
 
-      // Save to localStorage
-      localStorage.setItem('cart', JSON.stringify(updatedProducts));
+      // Save to localStorage (client-side only)
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cart', JSON.stringify(updatedProducts));
+      }
 
       return {
         products: updatedProducts,
@@ -60,8 +64,10 @@ export const useCartStore = create<CartState>((set, get) => ({
   },
 
   clearCart: () => {
-    // Clear local storage
-    localStorage.removeItem('cart');
+    // Clear local storage (client-side only)
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('cart');
+    }
 
     set({ products: [] });
   },
@@ -78,11 +84,16 @@ export const useCartStore = create<CartState>((set, get) => ({
   },
 
   loadCartFromStorage: () => {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      set({ products: JSON.parse(storedCart) });
+    if (typeof window !== 'undefined') {
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart) {
+        set({ products: JSON.parse(storedCart) });
+      }
     }
   },
 }));
 
-useCartStore.getState().loadCartFromStorage();
+// Make sure to call this function on the client side
+if (typeof window !== 'undefined') {
+  useCartStore.getState().loadCartFromStorage();
+}
