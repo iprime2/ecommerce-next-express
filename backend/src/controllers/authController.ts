@@ -3,9 +3,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { prisma } from '../config/prisma';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET || 'backup';
 
-// Register a new user (buyer or seller)
 export const register = async (req: Request, res: Response) => {
   const { email, password, name, role } = req.body;
 
@@ -34,22 +33,20 @@ export const register = async (req: Request, res: Response) => {
 
     res.status(201).json({ token, user: { id: user.id, email: user.email, name: user.name, role: user.role } });
   } catch (error) {
+    console.log("[AUTH_REGISTER]:"+ error);
     res.status(500).json({ error: 'Could not register user' });
   }
 };
 
-// Login an existing user
 export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   console.log(req.body);
 
   try {
-    // Check if the user exists
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {
       return res.status(400).json({ error: 'Invalid credentials' });
     }
-    console.log("Hello");
 
     // Compare the password
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -62,6 +59,7 @@ export const login = async (req: Request, res: Response) => {
 
     res.status(200).json({ token, user: {id: user.id, email: user.email, name: user.name, role: user.role } });
   } catch (error) {
+    console.log("[AUTH_LOGIN]:"+ error);
     res.status(500).json({ error: 'Could not login' });
   }
 };
