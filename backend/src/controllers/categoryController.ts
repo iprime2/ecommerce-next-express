@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { prisma } from '../config/prisma'; // Adjust the path according to your project structure
+import { prisma } from '../config/prisma';
 
 export const getAllCategories = async (req: Request, res: Response) => {
   try {

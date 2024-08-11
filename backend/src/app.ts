@@ -14,39 +14,31 @@ import colorRoutes from './routes/colorRoutes';
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 3000;
 
 app.use(morgan('combined'));
 
-// Security: Helmet helps secure Express apps by setting various HTTP headers.
 app.use(helmet());
 
-// CORS: Enables Cross-Origin Resource Sharing.
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000' })); 
 
-// Apply session management middleware
 app.use(sessionMiddleware);
 
-// Body Parser: Parses incoming request bodies in a middleware before your handlers, available under the req.body property.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Rate Limiting: Limits the number of requests per window of time to prevent abuse.
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000,
+  max: 100,
 });
 
 app.use(limiter);
 
-// Use all routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/sizes', sizeRoutes);
 app.use('/api/colors', colorRoutes);
 
-// Basic Route Example
 app.get('/', (req: Request, res: Response) => {
     res.send('Up and Ruuning!!');
 });
