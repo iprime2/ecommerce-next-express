@@ -37,7 +37,7 @@ const SizePage: FC<SizePageProps> = () => {
     if(params.sizeId !== "new"){
       fetchSizes();
     }
-  }, []);
+  }, [params.sizeId]);
 
   useEffect(() => {
     setMounted(true);

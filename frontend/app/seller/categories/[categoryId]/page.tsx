@@ -35,7 +35,7 @@ const CategoryPage: FC<CategoryPageProps> = () => {
     if(params.categoryId !== "new"){
       fetchCategories();
     }
-  }, []);
+  }, [params.categoryId]);
 
   return (
     <div className='flex-col'>

@@ -95,7 +95,7 @@ const ProductPage: FC<ProductPageProps> = () => {
     if(params.productId !== "new"){
       fetchProduct();
     }
-  }, []);
+  }, [params.productId]);
 
 
   return (

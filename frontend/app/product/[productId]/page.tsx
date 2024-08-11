@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
 import { useAuthStore } from "@/store/authStore";
+import Image from "next/image";
 
 const ProductPage: FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -80,7 +81,7 @@ const ProductPage: FC = () => {
         <div className="flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8">
           {/* Left side: Image */}
           <div className="flex-1">
-            <img
+            <Image
               src={product?.images[0]?.url}
               alt={product?.name}
               className="object-cover w-full h-full rounded-lg shadow-md"

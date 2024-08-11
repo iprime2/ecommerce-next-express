@@ -3,6 +3,7 @@
 import { FC } from "react";
 import { useCartStore } from "@/store/cartStore";
 import { Trash2, PlusCircle, MinusCircle } from "lucide-react";
+import Image from "next/image";
 
 const CartPage: FC = () => {
   const { products, addProduct, removeProduct, getTotalCount } = useCartStore();
@@ -36,7 +37,7 @@ const CartPage: FC = () => {
             products.map((product) => (
               <div key={product.id} className="flex items-center justify-between border-b py-4">
                 <div className="flex items-center space-x-4">
-                  <img
+                  <Image
                     src={product.imageUrl}
                     alt={product.name}
                     className="w-24 h-24 object-cover rounded"

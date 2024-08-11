@@ -34,7 +34,7 @@ const ColorPage: FC<ColorPageProps> = () => {
     if(params.colorId !== "new"){
       fetchColor();
     }
-  }, []);
+  }, [params.colorId]);
 
   return (
     <div className='flex-col'>

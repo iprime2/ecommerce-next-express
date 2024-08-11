@@ -2,6 +2,7 @@ import React from 'react';
 import { Product } from '@/utils/types';
 import Link from 'next/link';
 import ProductSkeleton from '../ProductSkeleton';
+import Image from 'next/image';
 
 interface ProductGridProps {
   products: Product[];
@@ -25,7 +26,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, loading }) => {
                 >
                   <div className="flex flex-col h-full">
                     <div className="w-full h-3/5 bg-gray-200 aspect-w-1 aspect-h-1 overflow-hidden lg:aspect-none">
-                      <img
+                      <Image
                         src={product?.images[0]?.url || '/placeholder.jpg'}
                         alt={product?.name}
                         className="w-full h-full object-center object-cover lg:w-full lg:h-full"
