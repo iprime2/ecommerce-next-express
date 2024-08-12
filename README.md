@@ -107,7 +107,6 @@ npm/pnpm run dev
 ```
 
 ## API Documnetations
-To write API documentation for your GitHub README file, you can follow a format like this:
 
 ### Categories
 - **GET /api/categories**
