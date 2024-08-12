@@ -129,7 +129,7 @@ const Sidebar = () => {
             <p>Hello</p>
           </Link> */}
           <div className="flex items-center">
-            <Link href="/seller/dashboard" className="text-xl font-bold text-indigo-600">
+            <Link href="/" className="text-xl font-bold text-indigo-600">
               Krishil
             </Link>
           </div>

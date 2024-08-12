@@ -142,7 +142,7 @@ const Navbar: React.FC<{ onSearch?: (query: string, category: string) => void, t
               </>
             )}
             <Button
-              onClick={handleLogout}
+              onClick={() => router.push("/")}
               className="transition"
               variant="outline" size="icon"
             >
