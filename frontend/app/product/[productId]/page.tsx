@@ -83,7 +83,9 @@ const ProductPage: FC = () => {
           <div className="flex-1">
             <Image
               src={product?.images[0]?.url}
-              alt={product?.name}
+              alt={product?.name} 
+              width={200}
+              height={600}
               className="object-cover w-full h-full rounded-lg shadow-md"
             />
           </div>

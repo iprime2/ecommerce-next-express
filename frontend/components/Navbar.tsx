@@ -81,7 +81,7 @@ const Navbar: React.FC<{ onSearch?: (query: string, category: string) => void, t
           </div>
           {type === "BUYER" && (
             <div className="flex flex-1 justify-center items-center px-4">
-              <form onSubmit={handleSearchSubmit} className="relative w-full max-w-lg flex focus:outline-none">
+              <form onSubmit={handleSearchSubmit} className="w-full max-w-lg flex items-center focus:outline-none">
                 <div className="w-[25%] rounded-l-full">
                   <Select
                     onValueChange={setSelectedCategory}
@@ -102,7 +102,7 @@ const Navbar: React.FC<{ onSearch?: (query: string, category: string) => void, t
                 <Input
                   id="search"
                   name="search"
-                  className="rounded-none pl-4 pr-14 py-2 border border-gray-300 bg-gray-100 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 border-radius"
+                  className="w-[75%] rounded-none pl-2 pr-14 py-2 border border-gray-300 bg-gray-100 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 border-radius"
                   placeholder="Search for products..."
                   type="search"
                   value={searchQuery}
@@ -110,7 +110,7 @@ const Navbar: React.FC<{ onSearch?: (query: string, category: string) => void, t
                 />
                 <Button
                   type="submit"
-                  className="absolute right-0 rounded-r-full bg-indigo-600 text-white px-4 py-2"
+                  className="w-[25%] rounded-r-full bg-indigo-600 text-white px-4 py-2"
                 >
                   Search
                 </Button>

@@ -29,6 +29,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, loading }) => {
                       <Image
                         src={product?.images[0]?.url || '/placeholder.jpg'}
                         alt={product?.name}
+                        width={200}
+                        height={600}
                         className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                       />
                     </div>

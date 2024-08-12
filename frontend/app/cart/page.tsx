@@ -38,6 +38,8 @@ const CartPage: FC = () => {
               <div key={product.id} className="flex items-center justify-between border-b py-4">
                 <div className="flex items-center space-x-4">
                   <Image
+                    width={200}
+                    height={600}
                     src={product.imageUrl}
                     alt={product.name}
                     className="w-24 h-24 object-cover rounded"
