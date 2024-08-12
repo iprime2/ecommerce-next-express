@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { ModeToggle } from "./theme-toogle";
-import { ShoppingCart, LogOut } from "lucide-react";
+import { ShoppingCart, LogOut, HomeIcon } from "lucide-react";
 import Link from "next/link";
 import { useAuthStore } from "@/store/authStore";
 import { useCartStore } from "@/store/cartStore";
@@ -73,12 +73,16 @@ const Navbar: React.FC<{ onSearch?: (query: string, category: string) => void, t
   return (
     <nav className="shadow-md bg-white dark:bg-gray-900 fixed w-full z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className={cn( type === "BUYER" && "flex justify-between items-center h-16", 
+          type === "SELLER" && "flex justify-end h-16"
+        )}>
+        {type === "BUYER" && (
           <div className="flex items-center">
             <Link href="/" className="text-xl font-bold text-indigo-600">
               Krishil
             </Link>
           </div>
+        )}
           {type === "BUYER" && (
             <div className="flex flex-1 justify-center items-center px-4">
               <form onSubmit={handleSearchSubmit} className="w-full max-w-lg flex items-center focus:outline-none">
@@ -117,7 +121,7 @@ const Navbar: React.FC<{ onSearch?: (query: string, category: string) => void, t
               </form>
             </div>
           )}
-          <div className="flex items-center space-x-6">
+          <div className={cn("flex items-center space-x-4", type === "SELLER" && "pr-[12%]")}>
             {!token ? (
               <Link
                 href="/auth"
@@ -135,14 +139,28 @@ const Navbar: React.FC<{ onSearch?: (query: string, category: string) => void, t
                     Dashboard
                   </Link>
                 )}
-                <button
-                  onClick={handleLogout}
-                  className="text-sm group flex p-3 justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition"
-                >
-                  <LogOut className="text-gray-600 dark:text-white" />
-                </button>
               </>
             )}
+            <Button
+              onClick={handleLogout}
+              className="transition"
+              variant="outline" size="icon"
+            >
+              <HomeIcon className="" />
+            </Button>
+            {token && (
+              <Button
+                onClick={handleLogout}
+                className="transition"
+                variant="outline" 
+                size="icon"
+              >
+                <LogOut />
+              </Button>
+            )}
+            <div className="flex items-center">
+              <ModeToggle />
+            </div>
             {type === "BUYER" && (
               <Link href="/cart" className="relative">
                 <ShoppingCart className="text-gray-600 dark:text-white" />
@@ -153,9 +171,6 @@ const Navbar: React.FC<{ onSearch?: (query: string, category: string) => void, t
                 )}
               </Link>
             )}
-            <div>
-              <ModeToggle />
-            </div>
           </div>
         </div>
       </div>

@@ -118,16 +118,21 @@ const Sidebar = () => {
     <div className="space-y-4 py-4 flex flex-col w-full h-full bg-[#111827] text-white">
       <div className="px-3 py-2 flex-2">
         <div className="flex items-center justify-center w-full mr-2">
-          <Link href="/">
-            {/* <Image
+          {/* <Link href="/">
+            <Image
               src={logoWhiteImage}
               className="cursor-pointer"
               alt="logo"
               width={190}
               height={55}
-            /> */}
+            />
             <p>Hello</p>
-          </Link>
+          </Link> */}
+          <div className="flex items-center">
+            <Link href="/seller/dashboard" className="text-xl font-bold text-indigo-600">
+              Krishil
+            </Link>
+          </div>
         </div>
         <div className="space-y-1 mt-8">
           {routes.map((route) => (

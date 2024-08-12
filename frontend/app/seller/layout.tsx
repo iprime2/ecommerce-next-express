@@ -40,7 +40,7 @@ export default function AdminLayout({
         <Sidebar />
       </div>
       <main className="w-full md:pl-60">
-        <Navbar type="seller"/>
+        <Navbar type="SELLER"/>
         <div className="pt-16"> 
         {children}
       </div>

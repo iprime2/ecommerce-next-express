@@ -3,8 +3,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 // Load the base URL from the environment variables
-// const BASE_URL = process.env.LOCALHOST || 'http://localhost:5000';
-const BASE_URL = process.env.LOCALHOST || 'http://ec2-3-111-188-77.ap-south-1.compute.amazonaws.com:5000';
+const BASE_URL = process.env.LOCALHOST || 'http://localhost:5000';
+// const BASE_URL = process.env.LOCALHOST || 'http://ec2-3-111-188-77.ap-south-1.compute.amazonaws.com:5000';
 
 // Create an Axios instance with the base URL
 const api = axios.create({
