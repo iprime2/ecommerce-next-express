@@ -106,6 +106,68 @@ CLOUDINARY_URL='cloudinary://199914391145468:oQpPzw9JSNP02GLL7lXnvuOhw5w@dehrep5
 npm/pnpm run dev
 ```
 
+## API Documnetations
+To write API documentation for your GitHub README file, you can follow a format like this:
+
+### Categories
+- **GET /api/categories**
+  - Description: Get all categories.
+  - Response: Array of category objects.
+
+- **GET /api/categories/:id**
+  - Description: Get a category by ID.
+  - Parameters:
+    - id: Category ID.
+  - Response: Category object.
+
+- **POST /api/categories**
+  - Description: Create a new category.
+  - Request Body: { name: string }
+  - Response: Created category object.
+
+- **PUT /api/categories/:id**
+  - Description: Update a category by ID.
+  - Parameters:
+    - id: Category ID.
+  - Request Body: { name: string }
+  - Response: Updated category object.
+
+- **DELETE /api/categories/:id**
+  - Description: Delete a category by ID.
+  - Parameters:
+    - id: Category ID.
+  - Response: No content.
+
+### Products
+- **GET /api/products**
+  - Description: Get all products.
+  - Response: Array of product objects.
+
+- **GET /api/products/:id**
+  - Description: Get a product by ID.
+  - Parameters:
+    - id: Product ID.
+  - Response: Product object.
+
+- **POST /api/products**
+  - Description: Create a new product.
+  - Request Body: { name: string, description: string, price: number, ... }
+  - Response: Created product object.
+
+- **PUT /api/products/:id**
+  - Description: Update a product by ID.
+  - Parameters:
+    - id: Product ID.
+  - Request Body: { name: string, description: string, price: number, ... }
+  - Response: Updated product object.
+
+- **DELETE /api/products/:id**
+  - Description: Delete a product by ID.
+  - Parameters:
+    - id: Product ID.
+  - Response: No content.
+  - 
+
 ## Available commands
 
 Running commands with npm `npm run [command]`
