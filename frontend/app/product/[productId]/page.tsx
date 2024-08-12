@@ -69,10 +69,10 @@ const ProductPage: FC = () => {
         imageUrl: product.images[0]?.url || "",
       });
       toast.success("Product added to cart!");
-    }else {
-      toast.error("You need to login first!");
+     }
+    } else {
+        toast.error("You need to login first!");
     }
-  }
   };
 
   return (
