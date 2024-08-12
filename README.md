@@ -4,6 +4,10 @@
 
 ![image](https://github.com/user-attachments/assets/2e0631d6-f8bb-49c6-8022-625fc1cafd38)
 
+## walkthrough videos
+
+https://drive.google.com/file/d/1ocj5d3Mh3zEK6rSiUPy5u0le9JNN77ts/view?usp=sharing
+
 ### Features:
 
 - Buyer can explore product from home page
