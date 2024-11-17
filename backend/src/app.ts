@@ -20,13 +20,16 @@ app.use(morgan('combined'));
 // Security: Helmet helps secure Express apps by setting various HTTP headers.
 app.use(helmet());
 
-const corsOptions = {
-  origin: 'https://ecommerce-next-express.vercel.app/',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-};
+// CORS: Enables Cross-Origin Resource Sharing.
+app.use(cors());
 
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: 'https://ecommerce-next-express.vercel.app/',
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+// };
+
+// app.use(cors(corsOptions));
 
 app.use(sessionMiddleware);
 
