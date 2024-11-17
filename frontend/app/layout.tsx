@@ -33,11 +33,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-export function serversideProps(){
-
-
-  return {
-    propos: data
-  }
-}
