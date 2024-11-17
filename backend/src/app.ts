@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
@@ -14,14 +13,29 @@ import colorRoutes from './routes/colorRoutes';
 
 dotenv.config();
 const app = express();
+const cors = require('cors');
 
 app.use(morgan('combined'));
 
 // Security: Helmet helps secure Express apps by setting various HTTP headers.
 app.use(helmet());
 
+const allowedOrigins = ['http://localhost:3000', 'https://ecommerce-next-express.vercel.app/'];
+
 // CORS: Enables Cross-Origin Resource Sharing.
-app.use(cors());
+app.use(cors({
+  origin: function (origin: any, callback: any) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+          callback(null, true);
+      } else {
+          callback(new Error('Not allowed by CORS'));
+      }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+  credentials: true // Allow credentials if needed
+}));
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
