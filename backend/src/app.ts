@@ -21,11 +21,7 @@ app.use(morgan('combined'));
 app.use(helmet());
 
 // CORS: Enables Cross-Origin Resource Sharing.
-app.use(cors({
-    origin: 'https://ecommerce-next-express.vercel.app', // Replace with your frontend domain
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-    credentials: true // Allow credentials if needed
-}));
+app.use(cors());
 
 app.use(sessionMiddleware);
 
